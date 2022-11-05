@@ -18,7 +18,7 @@ class BlogUserTableSeeder extends Seeder
         $b = new BlogUser;
         $b->name = "Sam";
         $b->blog_points = 23145;
-        $b->post_id = 1;
+        //$b->post_id = 1;
         $b->save();
     }
 }

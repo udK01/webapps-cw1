@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
 
             //foreign key
-            $table->bigInteger('post_id')->references('id')->on('post')
-                ->onDelete('cascade')->onUpdate('cascade');
+            // $table->bigInteger('post_id')->references('id')->on('post')
+            //     ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
