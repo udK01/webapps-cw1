@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->char('title', 100);
+            $table->longText('description');
             $table->timestamps();
+
+            //foreign key
+            $table->bigInteger('blog_user_id')->references('id')->on('bloguser')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('blog_users', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('blog_points');
+            $table->dateTime('date_of_birth')->nullable();
             $table->timestamps();
+
+            //foreign key
+            $table->bigInteger('post_id')->references('id')->on('post')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
