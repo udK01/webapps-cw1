@@ -9,6 +9,10 @@ class BlogUser extends Model
 {
     use HasFactory;
 
+    public function handle() {
+        return $this->hasOne(Handle::class);
+    }
+
     public function posts() {
         return $this->hasMany(Post::class);
     }
