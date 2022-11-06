@@ -17,20 +17,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         $this->call(BlogUserTableSeeder::class);
         $this->call(PostTableSeeder::class);        
         $this->call(CommentTableSeeder::class);
         
-        BlogUser::factory(15)
-            ->hasPosts(random_int(1,3))
-            ->hasComments(random_int(1,5))
-            ->create();
+        // Not realistic since everyone has x amount of posts and y amount of comments.
+        // BlogUser::factory(15)
+        //     ->hasPosts(random_int(1,3))
+        //     ->hasComments(random_int(1,5))
+        //     ->create();
+
+        for ($i=0; $i < 15; $i++) { 
+            BlogUser::factory()
+                ->hasPosts(rand(1,3))
+                ->hasComments(rand(1,5))
+                ->create();
+        }
     }
 }

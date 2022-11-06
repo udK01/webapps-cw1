@@ -19,7 +19,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'description' => fake()->realText(250), //character count, word count
+            'description' => fake()->realText(250),
             'post_id' => fake()->numberBetween(1,Post::Get()->count()),
             'blog_user_id' => 1, //fake()->numberBetween(1,BlogUser::Get()->count())
         ];

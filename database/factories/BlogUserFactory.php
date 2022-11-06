@@ -20,7 +20,6 @@ class BlogUserFactory extends Factory
             'name' => fake()->firstName(),
             'blog_points' => fake()->numberBetween(0,999),
             'date_of_birth' =>  fake()->date($format = 'Y-m-d', $max = 'now'),
-            //'post_id' => Post::factory(),
         ];
     }
 }
