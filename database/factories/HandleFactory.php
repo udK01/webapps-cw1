@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\BlogUser;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,8 +14,8 @@ class HandleFactory extends Factory
     public function definition()
     {
         return [
-            'handle_name' => preg_replace('#[aeiou\s]+#i', '', BlogUser::find(self::$id++)->name),
-            'blog_user_id' => 1,
+            'handle_name' => preg_replace('#[aeiou\s]+#i', '', User::find(self::$id++)->name),
+            'user_id' => 1,
         ];
     }
 }

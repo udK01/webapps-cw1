@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
 
             //foreign key
-            $table->bigInteger('blog_user_id')->references('id')->on('bloguser')
+            $table->bigInteger('user_id')->references('id')->on('bloguser')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }

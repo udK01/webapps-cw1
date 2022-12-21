@@ -17,7 +17,7 @@ class HandleTableSeeder extends Seeder
     {
         $h = new Handle();
         $h->handle_name = "charl13";
-        $h->blog_user_id = 1;
+        $h->user_id = 1;
         $h->save();
     }
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('post_id')->references('id')->on('post')
                 ->onDelete('cascade')->onUpdate('cascade');
             //foreign key
-            $table->bigInteger('blog_user_id')->references('id')->on('bloguser')
+            $table->bigInteger('user_id')->references('id')->on('bloguser')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }

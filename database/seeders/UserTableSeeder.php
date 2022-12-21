@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\BlogUser;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
-class BlogUserTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -15,9 +16,11 @@ class BlogUserTableSeeder extends Seeder
      */
     public function run()
     {
-        $b = new BlogUser;
+        $b = new User;
         $b->name = "Sam";
         $b->blog_points = 23145;
+        $b->email = "Sam@Storm.com";
+        $b->password = "SecretSam";
         $b->save();
     }
 }

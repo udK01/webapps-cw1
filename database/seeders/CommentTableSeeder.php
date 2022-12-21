@@ -18,7 +18,7 @@ class CommentTableSeeder extends Seeder
         $c = new Comment;
         $c->description = "Charlie won by cheating!";
         $c->post_id = 1;
-        $c->blog_user_id = 1;
+        $c->user_id = 1;
         $c->save();
     }
 }

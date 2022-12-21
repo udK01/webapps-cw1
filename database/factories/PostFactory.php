@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\BlogUser;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +18,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->realText(90),
-            'description' => fake()->realText(250),
-            'blog_user_id' => 1, //fake()->numberBetween(1,BlogUser::Get()->count())
+            'title' => fake()->realText(rand(30,100)),
+            'description' => fake()->realText(rand(50,250)),
+            'user_id' => 1, //fake()->numberBetween(1,BlogUser::Get()->count())
         ];
     }
 }

@@ -11,7 +11,7 @@ class Handle extends Model
 {
     use HasFactory;
 
-    public function blogUser() {
-        return $this->belongsTo(BlogUser::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
