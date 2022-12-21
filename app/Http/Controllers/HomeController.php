@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,10 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::get();
-        return view('home.index', ['posts' => $posts]);
+        return view('home.index', [
+            'posts' => DB::table('posts')->paginate(10)
+        ]);
+        //['posts' => $posts]);
     }
 
     /**

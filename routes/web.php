@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,24 +15,33 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard/posts', [HomeController::class, 'index'])
     ->name('home.index');;
 
-Route::post('/', [HomeController::class, 'store'])
+    Route::post('/dashboard/posts', [HomeController::class, 'store'])
     ->name('home.store');
 
-Route::get('/{id}', [HomeController::class, 'show'])
+Route::get('/dashboard/{id}', [HomeController::class, 'show'])
     ->name('home.show');
 
-Route::get('/home/create', [HomeController::class, 'create'])
+Route::get('/dashboard/create', [HomeController::class, 'create'])
     ->name('home.create');
 
-Route::delete('/{id}', [HomeController::class, 'destroy'])
+Route::delete('/dashboard/{id}', [HomeController::class, 'destroy'])
     ->name('home.destroy');
 
-Route::get('/welcome/{name?}', function ($name=false) {
-    if (!$name) {
-        return "Hello, Unknown!";
-    }
-    return "Hello, ".$name;
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+require __DIR__.'/auth.php';

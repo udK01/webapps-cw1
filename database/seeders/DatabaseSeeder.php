@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         //     ->hasComments(random_int(1,5))
         //     ->create();
 
-        for ($i=0; $i < 15; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             User::factory()
                 ->hasHandle(1)
                 ->hasPosts(rand(1,3))

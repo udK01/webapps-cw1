@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-
-<head>
-    <title>Blog Website - @yield('title')</title>
-</head>
-
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            @yield('title')
+        </h2>
+    </x-slot>
 <body>
-    <h1>Blog Website - @yield('title')</h1>
-
     @if ($errors->any())
         <div>
             Errors:
@@ -20,14 +18,64 @@
 
     @if (session('message'))
 
-        <p><b>{{ session('message') }}</b></p>
+        <p class="centerDelete"><b>{{ session('message') }}</b></p>
         
     @endif
 
-    <div>
+    <div class="center">
         @yield('content')
     </div>
 
+    <style>
+        .center {
+            display: grid;
+            place-items: center;
+        }
 
+        .centerDelete {
+            display: grid;
+            place-items: center;
+            font-size: xx-large;
+            margin-top: 5px;
+        }
 
-</html>
+        .pButton {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            border: 1px solid;
+            border-color: red;
+            padding: 10px;
+            box-shadow: 5px 10px #FF0000;
+            margin-bottom: 45px;
+            margin-left: 45px;
+            font-size: 350%;
+        }
+
+        .postBox {
+           border: 1px solid;
+           border-color: orange;
+           padding: 10px;
+           box-shadow: 5px 10px #ff9933;
+           height: 125px;
+           width: 1100px;
+           position: relative;
+           top: 20px;
+           margin-bottom: 20px; 
+        }
+
+        .commentBox {
+           border: 1px solid;
+           border-color: black;
+           padding: 10px;
+           box-shadow: 5px 10px #808080;
+           height: 125px;
+           width: 750px;
+           position: relative;
+           top: 20px;
+           margin-bottom: 20px; 
+        }
+
+    </style>
+
+</x-app-layout>
