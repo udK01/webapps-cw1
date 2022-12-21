@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home.index');;
+
+Route::post('/', [HomeController::class, 'store'])
+    ->name('home.store');
+
+Route::get('/{id}', [HomeController::class, 'show'])
+    ->name('home.show');
+
+Route::get('/home/create', [HomeController::class, 'create'])
+    ->name('home.create');
+
+Route::delete('/{id}', [HomeController::class, 'destroy'])
+    ->name('home.destroy');
 
 Route::get('/welcome/{name?}', function ($name=false) {
     if (!$name) {
