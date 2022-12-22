@@ -14,7 +14,7 @@
             value ="{{ old('description') }}" class="postBox" placeholder="Description"></p></p>
 
         <input type="submit" value="Submit" class="submitButton">
-        <div class="backButton"><a href="{{ route('home.index') }}">Cancel</a></div>
+        <a href="{{ route('home.index') }}"><div class="backButton">Cancel</div></a>
     </form>
 
     <style>

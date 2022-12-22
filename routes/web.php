@@ -23,14 +23,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('/dashboard', [HomeController::class, 'store_comment'])
+    ->name('home.store_comment');
+
 Route::get('/dashboard/posts', [HomeController::class, 'index'])
     ->name('home.index');;
 
 Route::post('/dashboard/posts', [HomeController::class, 'store'])
     ->name('home.store');
-
-Route::post('/dashboard/posts', [HomeController::class, 'store_comment'])
-    ->name('home.store_comment');
 
 Route::get('/dashboard/create', [HomeController::class, 'create'])
     ->name('home.create');
@@ -40,6 +40,9 @@ Route::get('/dashboard/{id}', [HomeController::class, 'show'])
 
 Route::delete('/dashboard/{id}', [HomeController::class, 'destroy'])
     ->name('home.destroy');
+
+Route::delete('/dashboard/{id}', [HomeController::class, 'destroy_comment'])
+    ->name('home.destroy_comment');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

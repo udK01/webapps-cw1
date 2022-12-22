@@ -3,13 +3,23 @@
 @section('title', 'Blog Index')
 
 @section('content')
-    <ul>
+    {{-- <ul>
         @foreach ($posts as $post)
-            <li class="postBox"><a href="{{ route('home.show', ['id' => $post->id]) }}">Title: {{$post->title}}</a>
+            <a href="{{ route('home.show', ['id' => $post->id]) }}"><li class="postBox">Title: {{$post->title}}</a>
             <br>Comments: {{$post->comments->count()}}
             </li>
         @endforeach
-    </ul>
-    <div class="postButton"><a href="{{ route('home.create') }}">Create Post</a></div>
+    </ul> --}}
+
+    @foreach ($posts as $post)
+            <a href="{{ route('home.show', ['id' => $post->id]) }}">
+            <div class="postBox">
+                    Poster: {{$post->user->name}}
+                <br>Title: {{$post->title}}
+                <br>Comments: {{$post->comments->count()}}</div></a>
+            
+    @endforeach
+
+    <a href="{{ route('home.create') }}"><div class="postButton">Create Post</div></a>
     {{ $posts -> links('pagination::tailwind')}}
 @endsection

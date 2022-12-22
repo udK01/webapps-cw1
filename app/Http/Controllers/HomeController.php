@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         // $posts = Post::all();
         // return view('home.index', ["posts" => $posts]);
-        $posts = Post::with('user')->paginate(15);
+        $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(15);
         return view('home.index', ['posts' => $posts]);
     }
 
@@ -129,5 +129,20 @@ class HomeController extends Controller
         $post->delete();
 
         return redirect()->route('home.index')->with('message', 'Post was deleted.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy_comment($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        $referer = $_SERVER['HTTP_REFERER'] ?? null;
+        $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
+        return redirect()->route('home.show', ["id" => $post_id])->with('message', 'Comment was deleted.');
     }
 }

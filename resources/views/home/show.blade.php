@@ -3,13 +3,11 @@
 @section('title', 'Post show view')
 
 @section('content')
-    <ul class="postBox">
-        <li>User: {{$post->user->name}}</li>
-        <li>Title: {{$post->title}}</li>
-        <li>Description: {{$post->description}}</li>
-    </ul>
+    <div class="postBox">User: {{$post->user->name}}
+        <br>Title: {{$post->title}}
+        <br>Description: {{$post->description}}</div>
 
-    <button class="backButton"><a href="{{ route('home.index') }}">Back</a></button>
+    <a href="{{ route('home.index') }}"><button class="backButton">Back</button></a>
 
     <form method="POST" action="{{ route('home.store_comment') }}">
         @csrf
@@ -18,10 +16,17 @@
     </form>
 
     @foreach ($post->comments as $comment)
-        <ul class="commentBox">
-            <li>User: {{$comment->user->name}}</li>
-            <li>Comment: {{$comment->description}}</li>
-        </ul>
+        <div class="commentBox">User: {{$comment->user->name}}
+            <br>Comment: {{$comment->description}}
+            @if ($loggedIn == $comment->user->id)
+                <form method="POST" action="{{ route('home.destroy_comment', ['id' => $comment->id]) }}" class="deleteComment">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
+            @endif
+        </div>
+        
     @endforeach
 
     @if ($loggedIn == $post->user->id) 
@@ -80,6 +85,17 @@
             position: relative;
             top: 20px;
             margin-bottom: 90px; 
+        }
+
+        .deleteComment {
+            position: absolute;
+            border: 1px solid;
+            right: 0;
+            border-color: red;
+            padding: 10px;
+            box-shadow: 5px 10px #FF0000;
+            margin-right: 8px;
+            font-size: 125%;
         }
     </style>
 @endsection
