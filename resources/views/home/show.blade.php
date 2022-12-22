@@ -4,7 +4,7 @@
 
 @section('content')
     <ul class="postBox">
-        <li>User: {{$user->name}}</li>
+        <li>User: {{$post->user->name}}</li>
         <li>Title: {{$post->title}}</li>
         <li>Description: {{$post->description}}</li>
     </ul>
@@ -16,11 +16,14 @@
         </ul>
     @endforeach
 
-    <form method="POST" action="{{ route('home.destroy', ['id' => $post->id]) }}" class="dButton">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Delete</button>
-    </form>
+    @if ($loggedIn == $post->user->id) 
+        <form method="POST" action="{{ route('home.destroy', ['id' => $post->id]) }}" class="dButton">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
+    @endif
+    
 
     <p class="bButton"><a href="{{ route('home.index') }}">Back</a></p>
 

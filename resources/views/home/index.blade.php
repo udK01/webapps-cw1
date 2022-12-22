@@ -9,4 +9,5 @@
         @endforeach
     </ul>
     <div class="pButton"><a href="{{ route('home.create') }}">Create Post</a></div>
+    {{ $posts -> links('pagination::tailwind')}}
 @endsection

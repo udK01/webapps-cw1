@@ -29,11 +29,11 @@ Route::get('/dashboard/posts', [HomeController::class, 'index'])
     Route::post('/dashboard/posts', [HomeController::class, 'store'])
     ->name('home.store');
 
-Route::get('/dashboard/{id}', [HomeController::class, 'show'])
-    ->name('home.show');
-
 Route::get('/dashboard/create', [HomeController::class, 'create'])
     ->name('home.create');
+
+Route::get('/dashboard/{id}', [HomeController::class, 'show'])
+    ->name('home.show');
 
 Route::delete('/dashboard/{id}', [HomeController::class, 'destroy'])
     ->name('home.destroy');

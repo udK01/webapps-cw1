@@ -17,8 +17,8 @@
     @endif
 
     @if (session('message'))
-
-        <p class="centerDelete"><b>{{ session('message') }}</b></p>
+            
+        <div class="centerDelete"><b>{{ session('message') }}</b></div>
         
     @endif
 
@@ -75,7 +75,6 @@
            top: 20px;
            margin-bottom: 20px; 
         }
-
     </style>
 
 </x-app-layout>

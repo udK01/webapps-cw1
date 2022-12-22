@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +18,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
         return view('home.index', [
-            'posts' => DB::table('posts')->paginate(10)
+            'posts' => DB::table('posts')->orderBy('created_at', 'desc')->paginate(10)
         ]);
-        //['posts' => $posts]);
     }
 
     /**
@@ -49,7 +49,7 @@ class HomeController extends Controller
         $t = new Post;
         $t->title = $validatedData['title'];
         $t->description = $validatedData['description'];
-        $t->user_id = User::get()->first()->id;
+        $t->user_id = Auth::id();
         $t->save();
 
         session()->flash('message', 'Post was created.');
@@ -65,8 +65,8 @@ class HomeController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        $user = User::findOrFail($post->user_id);
-        return view('home.show', ['post' => $post, 'user' => $user]);
+        $loggedIn = Auth::id();
+        return view('home.show', ['post' => $post, 'loggedIn' => $loggedIn]);
     }
 
     /**
