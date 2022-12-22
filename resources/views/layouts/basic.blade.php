@@ -6,7 +6,7 @@
     </x-slot>
 <body>
     @if ($errors->any())
-        <div>
+        <div class="center">
             Errors:
             <ul>
                 @foreach ($errors->all() as $error)
