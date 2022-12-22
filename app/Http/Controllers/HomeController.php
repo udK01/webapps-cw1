@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index', [
-            'posts' => DB::table('posts')->orderBy('created_at', 'desc')->paginate(10)
-        ]);
+        // $posts = Post::all();
+        // return view('home.index', ["posts" => $posts]);
+        $posts = Post::with('user')->paginate(15);
+        return view('home.index', ['posts' => $posts]);
     }
 
     /**
@@ -54,6 +56,29 @@ class HomeController extends Controller
 
         session()->flash('message', 'Post was created.');
         return redirect()->route('home.index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store_comment(Request $request)
+    {
+        $validatedData = $request->validate([
+            'description' => 'required|max:250',
+        ]);
+
+        $referer = $_SERVER['HTTP_REFERER'] ?? null;
+        $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
+        $c = new Comment;
+        $c->description = $validatedData['description'];
+        $c->post_id = $post_id;
+        $c->user_id = Auth::id();
+        $c->save();
+
+        return redirect()->route('home.show', ["id" => $post_id]);
     }
 
     /**

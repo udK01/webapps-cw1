@@ -5,21 +5,21 @@
 @section('content')
     <form method="POST" action="{{ route('home.store') }}">
         @csrf
-        <p class="padding">Title: <input type="text" name="title"
+        <p><input type="text" name="title"
         
-            value ="{{ old('title') }}" class="postBox"></p>
+            value ="{{ old('title') }}" class="postBox" placeholder="Title"></p>
 
-        <p>Description: <input type="text" name="description" 
+        <p><input type="text" name="description" 
             
-            value ="{{ old('description') }}" class="postBox"></p></p>
+            value ="{{ old('description') }}" class="postBox" placeholder="Description"></p></p>
 
-        <input type="submit" value="Submit" class="sButton">
-        <div class="bButton"><a href="{{ route('home.index') }}">Cancel</a></div>
+        <input type="submit" value="Submit" class="submitButton">
+        <div class="backButton"><a href="{{ route('home.index') }}">Cancel</a></div>
     </form>
 
     <style>
         
-        .sButton {
+        .submitButton {
             position: fixed;
             right: 0;
             border: 1px solid;
@@ -27,11 +27,11 @@
             padding: 10px;
             box-shadow: 5px 10px #00FF00;
             margin-top: 50px;
-            margin-right: 360px;
+            margin-right: 400px;
             font-size: 350%;
         }
 
-        .bButton {
+        .backButton {
             position: absolute;
             left: 0;
             border: 1px solid;
@@ -39,12 +39,8 @@
             padding: 10px;
             box-shadow: 5px 10px #808080;
             margin-top: 50px;
-            margin-left: 450px;
+            margin-left: 410px;
             font-size: 350%;
-        }
-
-        .padding {
-            margin-left: 46px;
         }
     </style>
 @endsection

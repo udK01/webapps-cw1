@@ -39,7 +39,7 @@
             margin-top: 5px;
         }
 
-        .pButton {
+        .postButton {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -53,15 +53,15 @@
         }
 
         .postBox {
-           border: 1px solid;
-           border-color: orange;
-           padding: 10px;
-           box-shadow: 5px 10px #ff9933;
-           height: 125px;
-           width: 1100px;
-           position: relative;
-           top: 20px;
-           margin-bottom: 20px; 
+            border: 1px solid;
+            border-color: orange;
+            padding: 10px;
+            box-shadow: 5px 10px #ff9933;
+            height: 125px;
+            width: 1100px;
+            position: relative;
+            top: 20px;
+            margin-bottom: 20px; 
         }
 
         .commentBox {

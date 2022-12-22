@@ -9,6 +9,14 @@
         <li>Description: {{$post->description}}</li>
     </ul>
 
+    <button class="backButton"><a href="{{ route('home.index') }}">Back</a></button>
+
+    <form method="POST" action="{{ route('home.store_comment') }}">
+        @csrf
+        <input type="submit" value="Submit" class="submitButton">
+    <p> <input type="text" name="description" value ="{{ old('description') }}" class="userComment" placeholder="Comment"></p>
+    </form>
+
     @foreach ($post->comments as $comment)
         <ul class="commentBox">
             <li>User: {{$comment->user->name}}</li>
@@ -17,18 +25,15 @@
     @endforeach
 
     @if ($loggedIn == $post->user->id) 
-        <form method="POST" action="{{ route('home.destroy', ['id' => $post->id]) }}" class="dButton">
+        <form method="POST" action="{{ route('home.destroy', ['id' => $post->id]) }}" class="deleteButton">
             @csrf
             @method('DELETE')
             <button type="submit">Delete</button>
         </form>
     @endif
-    
-
-    <p class="bButton"><a href="{{ route('home.index') }}">Back</a></p>
 
     <style>
-        .dButton {
+        .deleteButton {
             position: absolute;
             top: 0;
             right: 0;
@@ -41,7 +46,18 @@
             font-size: 225%;
         }
 
-        .bButton {
+        .submitButton {
+            position: absolute;
+            border: 1px solid;
+            border-color: green;
+            padding: 10px;
+            box-shadow: 5px 10px #00FF00;
+            margin-top: 165px;
+            margin-left: 665px; 
+            font-size: 125%;
+        }
+
+        .backButton {
             position: absolute;
             top: 0;
             left: 0;
@@ -49,9 +65,21 @@
             border-color: black;
             padding: 10px;
             box-shadow: 5px 10px #808080;
-            margin-top: 302px;
-            margin-left: 435px;
+            margin-top: 305px;
+            margin-left: 445px;
             font-size: 225%;
+        }
+
+        .userComment {
+            border: 1px solid;
+            border-color: black;
+            padding: 10px;
+            box-shadow: 5px 10px #808080;
+            height: 125px;
+            width: 750px;
+            position: relative;
+            top: 20px;
+            margin-bottom: 90px; 
         }
     </style>
 @endsection

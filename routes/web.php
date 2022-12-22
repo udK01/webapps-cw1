@@ -26,8 +26,11 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/posts', [HomeController::class, 'index'])
     ->name('home.index');;
 
-    Route::post('/dashboard/posts', [HomeController::class, 'store'])
+Route::post('/dashboard/posts', [HomeController::class, 'store'])
     ->name('home.store');
+
+Route::post('/dashboard/posts', [HomeController::class, 'store_comment'])
+    ->name('home.store_comment');
 
 Route::get('/dashboard/create', [HomeController::class, 'create'])
     ->name('home.create');

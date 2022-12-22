@@ -5,9 +5,11 @@
 @section('content')
     <ul>
         @foreach ($posts as $post)
-            <li class="postBox"><a href="{{ route('home.show', ['id' => $post->id]) }}">{{$post->title}}</a></li>
+            <li class="postBox"><a href="{{ route('home.show', ['id' => $post->id]) }}">Title: {{$post->title}}</a>
+            <br>Comments: {{$post->comments->count()}}
+            </li>
         @endforeach
     </ul>
-    <div class="pButton"><a href="{{ route('home.create') }}">Create Post</a></div>
+    <div class="postButton"><a href="{{ route('home.create') }}">Create Post</a></div>
     {{ $posts -> links('pagination::tailwind')}}
 @endsection
