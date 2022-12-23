@@ -17,7 +17,6 @@
     @endif
 
     @if (session('message'))
-            
         <div class="centerDelete"><b>{{ session('message') }}</b></div>
         
     @endif

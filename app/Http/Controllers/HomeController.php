@@ -95,6 +95,18 @@ class HomeController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_comment($id)
+    {
+        $comment = Comment::findOrFail($id);
+        return view('home.show_comment', ['comment' => $comment]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -140,9 +152,8 @@ class HomeController extends Controller
     public function destroy_comment($id)
     {
         $comment = Comment::findOrFail($id);
+        $post_id = $comment->post->id;
         $comment->delete();
-        $referer = $_SERVER['HTTP_REFERER'] ?? null;
-        $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
-        return redirect()->route('home.show', ["id" => $post_id])->with('message', 'Comment was deleted.');
+        return redirect()->route('home.show', ["id" => $comment->post_id])->with('message', 'Comment was deleted.');
     }
 }

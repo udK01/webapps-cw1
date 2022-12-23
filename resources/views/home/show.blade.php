@@ -7,7 +7,7 @@
         <br>Title: {{$post->title}}
         <br>Description: {{$post->description}}</div>
 
-    <a href="{{ route('home.index') }}"><button class="backButton">Back</button></a>
+    
 
     <form method="POST" action="{{ route('home.store_comment') }}">
         @csrf
@@ -15,25 +15,29 @@
     <p> <input type="text" name="description" value ="{{ old('description') }}" class="userComment" placeholder="Comment"></p>
     </form>
 
-    @foreach ($post->comments as $comment)
+    {{-- <a href="{{ route('home.show', ['id' => $post->id]) }}"> --}}
+
+    @foreach ($post->comments->reverse() as $comment)
+    @if ($loggedIn == $comment->user->id)
+        <a href="{{ route('home.show_comment', ['id' => $comment->id]) }}">
+            <div class="commentBox" style="margin-bottom: 40px;">User: {{$comment->user->name}}
+                <br>Comment: {{$comment->description}}
+            </div>
+            <button class="inspectComment">Inspect</button></a>
+    @else
         <div class="commentBox">User: {{$comment->user->name}}
             <br>Comment: {{$comment->description}}
-            @if ($loggedIn == $comment->user->id)
-                <form method="POST" action="{{ route('home.destroy_comment', ['id' => $comment->id]) }}" class="deleteComment">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Delete</button>
-                </form>
-            @endif
         </div>
-        
+    @endif
     @endforeach
+    
+    <a href="{{ route('home.index') }}"><button class="backButton">Back</button></a>
 
     @if ($loggedIn == $post->user->id) 
         <form method="POST" action="{{ route('home.destroy', ['id' => $post->id]) }}" class="deleteButton">
             @csrf
             @method('DELETE')
-            <button type="submit">Delete</button>
+            <a onclick='return confirm("Are you sure?")'><button type="submit">Delete</button></a>
         </form>
     @endif
 
@@ -46,9 +50,9 @@
             border-color: red;
             padding: 10px;
             box-shadow: 5px 10px #FF0000;
-            margin-top: 302px;
-            margin-right: 415px;
-            font-size: 225%;
+            margin-top: 448px;
+            margin-right: 680px;
+            font-size: 125%;
         }
 
         .submitButton {
@@ -65,14 +69,13 @@
         .backButton {
             position: absolute;
             top: 0;
-            left: 0;
             border: 1px solid;
             border-color: black;
             padding: 10px;
             box-shadow: 5px 10px #808080;
-            margin-top: 305px;
-            margin-left: 445px;
-            font-size: 225%;
+            margin-inline: -375px;
+            margin-block: 448px;
+            font-size: 125%;
         }
 
         .userComment {
@@ -87,15 +90,17 @@
             margin-bottom: 90px; 
         }
 
-        .deleteComment {
+        .inspectComment {
             position: absolute;
             border: 1px solid;
             right: 0;
-            border-color: red;
+            border-color: blue;
             padding: 10px;
-            box-shadow: 5px 10px #FF0000;
-            margin-right: 8px;
+            box-shadow: 5px 10px #0000FF;
+            margin-inline: 480px;
+            margin-block: -115px;
             font-size: 125%;
         }
+
     </style>
 @endsection
