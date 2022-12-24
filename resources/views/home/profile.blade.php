@@ -1,11 +1,14 @@
 @extends('layouts.basic')
 
-@section('title', 'Blog Index')
+@section('title', 'Profile View')
 
 @section('content')
 
+
+
+
     {{-- Posts --}}
-    <h1>{{$user->name}}'s: Posts</h1>
+    <h1 style="font-size:3vw">{{$user->name}}'s: Posts</h1>
     @foreach ($user->posts as $post)
         <a href="{{ route('home.show', ['id' => $post->id]) }}">
         <div class="postBox">
@@ -15,7 +18,7 @@
     @endforeach
 
     {{-- Comments --}}
-    <h1 style="padding-top: 20px;">{{$user->name}}'s: Comments</h1>
+    <h1 style="padding-top: 20px;font-size:3vw">{{$user->name}}'s: Comments</h1>
     @foreach ($user->comments->reverse() as $comment)
     @if ($loggedIn == $user->id)
         <a href="{{ route('home.show_comment', ['id' => $comment->id]) }}">
@@ -30,5 +33,4 @@
         </div>
     @endif
     @endforeach
-
 @endsection

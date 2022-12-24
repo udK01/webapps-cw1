@@ -26,6 +26,9 @@ Route::get('/dashboard', function () {
 Route::post('/dashboard', [HomeController::class, 'store_comment'])
     ->name('home.store_comment');
 
+Route::post('/dashboard/edit', [HomeController::class, 'store_post'])
+    ->name('home.store_post');
+
 Route::get('/dashboard/posts', [HomeController::class, 'index'])
     ->name('home.index');;
 
@@ -40,6 +43,9 @@ Route::get('/dashboard/posts/show_comment/{id}', [HomeController::class, 'show_c
 
 Route::get('/dashboard/posts/{id}', [HomeController::class, 'show'])
     ->name('home.show');
+
+Route::get('/dashboard/posts/edit/{id}', [HomeController::class, 'edit'])
+    ->name('home.edit');
 
 Route::get('/dashboard/profile/{id}', [HomeController::class, 'show_profile'])
     ->name('home.profile');

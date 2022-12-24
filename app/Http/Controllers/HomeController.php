@@ -82,6 +82,29 @@ class HomeController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store_post(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'description' => 'required|max:250',
+        ]);
+
+        $referer = $_SERVER['HTTP_REFERER'] ?? null;
+        $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
+        $post = Post::findOrFail($post_id);
+        $post->title = $validatedData['title'];
+        $post->description = $validatedData['description'];
+        $post->save();
+
+        return redirect()->route('home.show', ["id" => $post_id]);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -127,7 +150,9 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $loggedIn = Auth::id();
+        return view('home.edit', ['post' => $post, 'loggedIn' => $loggedIn]);
     }
 
     /**
