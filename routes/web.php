@@ -35,16 +35,19 @@ Route::post('/dashboard/posts', [HomeController::class, 'store'])
 Route::get('/dashboard/create', [HomeController::class, 'create'])
     ->name('home.create');
 
-Route::get('/dashboard/show_comment/{id}', [HomeController::class, 'show_comment'])
+Route::get('/dashboard/posts/show_comment/{id}', [HomeController::class, 'show_comment'])
     ->name('home.show_comment');
 
-Route::get('/dashboard/{id}', [HomeController::class, 'show'])
+Route::get('/dashboard/posts/{id}', [HomeController::class, 'show'])
     ->name('home.show');
 
-Route::delete('/dashboard/{id}', [HomeController::class, 'destroy'])
+Route::get('/dashboard/profile/{id}', [HomeController::class, 'show_profile'])
+    ->name('home.profile');
+
+Route::delete('/dashboard/posts/{id}', [HomeController::class, 'destroy'])
     ->name('home.destroy');
 
-Route::delete('/dashboard/destroy_comment/{id}', [HomeController::class, 'destroy_comment'])
+Route::delete('/dashboard/posts/destroy_comment/{id}', [HomeController::class, 'destroy_comment'])
     ->name('home.destroy_comment');
 
 Route::middleware('auth')->group(function () {

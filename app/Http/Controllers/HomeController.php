@@ -95,6 +95,19 @@ class HomeController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_profile($id)
+    {
+        $user = User::findOrFail($id);
+        $loggedIn = Auth::id();
+        return view('home.profile', ['user' => $user, 'loggedIn' => $loggedIn]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
