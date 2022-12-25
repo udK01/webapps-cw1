@@ -13,6 +13,7 @@ class PostComment extends Component
     public $post;
     public $description;
     public $loggedIn;
+    protected $listeners = ['refreshComponent' => '$refresh'];
     protected $rules = [
         'description' => 'required|max:250',
     ];
@@ -30,6 +31,8 @@ class PostComment extends Component
         $c->post_id = $this->post->id;
         $c->user_id = Auth::id();
         $c->save();
+        $this->reset('description');
+        $this->emit('refreshComponent');
     }
 
     public function render()

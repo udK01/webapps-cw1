@@ -5,7 +5,7 @@
         {{-- Comment --}}
         <h1>""</h1>
         @error('description')<span class="center" style="color:red;">{{$message}}</span>@enderror
-        <input type="text" wire:model="description" name="description" value ="{{ old('description') }}" 
+        <input type="text" wire:model="description" name="description"
         style="border: 1px solid;border-color: black;padding: 10px;box-shadow: 5px 10px #808080;
         height: 125px;width: 750px;position: relative;top: 20px;" placeholder="Comment">
         {{-- Submit Button --}}
