@@ -17,7 +17,7 @@
     @endif
 
     @if (session('message'))
-        <div class="centerDelete"><b>{{ session('message') }}</b></div>
+        <div style="display: grid;place-items: center;font-size: xx-large;margin-top: 5px;"><b>{{ session('message') }}</b></div>
         
     @endif
 
@@ -31,24 +31,15 @@
             place-items: center;
         }
 
-        .centerDelete {
-            display: grid;
-            place-items: center;
-            font-size: xx-large;
-            margin-top: 5px;
-        }
-
         .postButton {
             position: fixed;
-            bottom: 0;
-            left: 0;
+            bottom: 45px;
+            left: 45px;
+            font-size: 350%;
             border: 1px solid;
             border-color: red;
             padding: 10px;
             box-shadow: 5px 10px #FF0000;
-            margin-bottom: 45px;
-            margin-left: 45px;
-            font-size: 350%;
         }
 
         .postBox {

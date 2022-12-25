@@ -9,7 +9,18 @@
         <br>Description: {{$post->description}}
     </div>
 
-    {{-- Comment Submit --}}
+    {{-- Comment Submit
+    <form method="POST" action="{{ route('home.store_comment') }}">
+        @csrf
+        <input type="submit" value="Submit" 
+        style="position: absolute; border: 1px solid;border-color: green;padding: 10px;
+        box-shadow: 5px 10px #00FF00;margin-top: 165px; margin-left: 665px;font-size: 125%;">
+    <p> <input type="text" name="description" value ="{{ old('description') }}" 
+    style="border: 1px solid;border-color: black;padding: 10px;box-shadow: 5px 10px #808080;
+        height: 125px;width: 750px;position: relative;top: 20px;" placeholder="Comment"></p>
+    </form> --}}
+
+    {{-- Ajax Comment Submit --}}
     <form method="POST" action="{{ route('home.store_comment') }}">
         @csrf
         <input type="submit" value="Submit" 
