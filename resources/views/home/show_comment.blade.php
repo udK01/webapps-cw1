@@ -5,7 +5,8 @@
 @section('content')
 
     {{-- Comment Displayed --}}
-    <div class="commentBox" style="margin-bottom: 40px;">User: {{$comment->user->name}}
+    <div class="commentBox" style="margin-bottom: 40px;">User: 
+        <a href="{{ route('home.profile', ['id' => $comment->user->id]) }}">{{$comment->user->name}}</a>
         <br>Comment: {{$comment->description}}
     </div>
 

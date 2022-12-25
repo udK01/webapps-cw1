@@ -3,10 +3,6 @@
 @section('title', 'Profile View')
 
 @section('content')
-
-
-
-
     {{-- Posts --}}
     <h1 style="font-size:3vw">{{$user->name}}'s: Posts</h1>
     @foreach ($user->posts as $post)

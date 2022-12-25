@@ -12,6 +12,7 @@ class PostComment extends Component
 
     public $post;
     public $description;
+    public $loggedIn;
     protected $rules = [
         'description' => 'required|max:250',
     ];
@@ -19,6 +20,7 @@ class PostComment extends Component
     public function mount(Post $post)
     {
         $this->post = $post;
+        $this->loggedIn = Auth::id();
     }
 
     public function submit() {
