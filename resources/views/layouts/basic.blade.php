@@ -1,10 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
+        @livewireStyles
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @yield('title')
         </h2>
     </x-slot>
 <body>
+    @livewireScripts
     @if ($errors->any())
         <div class="center">
             Errors:
