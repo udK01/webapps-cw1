@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\PostComment;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/dashboard', [HomeController::class, 'store_comment'])
-    ->name('home.store_comment');
+Route::post('/dashboard', [PostComment::class, 'store_comment'])
+    ->name('wire.store_comment');
 
 Route::post('/dashboard/edit', [HomeController::class, 'store_post'])
     ->name('home.store_post');

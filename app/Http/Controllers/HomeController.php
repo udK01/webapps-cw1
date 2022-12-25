@@ -64,22 +64,22 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_comment(Request $request)
-    {
-        $validatedData = $request->validate([
-            'description' => 'required|max:250',
-        ]);
+    // public function store_comment(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'description' => 'required|max:250',
+    //     ]);
 
-        $referer = $_SERVER['HTTP_REFERER'] ?? null;
-        $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
-        $c = new Comment;
-        $c->description = $validatedData['description'];
-        $c->post_id = $post_id;
-        $c->user_id = Auth::id();
-        $c->save();
+    //     $referer = $_SERVER['HTTP_REFERER'] ?? null;
+    //     $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
+    //     $c = new Comment;
+    //     $c->description = $validatedData['description'];
+    //     $c->post_id = $post_id;
+    //     $c->user_id = Auth::id();
+    //     $c->save();
 
-        return redirect()->route('home.show', ["id" => $post_id]);
-    }
+    //     return redirect()->route('home.show', ["id" => $post_id]);
+    // }
 
     /**
      * Store a newly created resource in storage.
