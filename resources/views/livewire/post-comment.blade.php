@@ -20,7 +20,7 @@
     padding: 10px;box-shadow: 5px 10px #808080;font-size: 125%;">Back</button></a>
 
     {{-- Authorisation Check --}}
-    @if ($loggedIn == $post->user->id) 
+    @if ($loggedIn == $post->user->id || Auth::user()->permission >= 1) 
         {{--Edit--}}
         <a href="{{ route('home.edit', ['id' => $post->id]) }}"><button 
             style="position: relative;border: 1px solid;top: 40px;right: -5px;border-color: purple;
@@ -38,7 +38,7 @@
     {{-- Comments --}}
     <h1 style="padding:20px;"></h1>
     @foreach ($post->comments->reverse() as $comment)
-    @if ($loggedIn == $comment->user->id)
+    @if ($loggedIn == $comment->user->id || Auth::user()->permission >= 1)
         <a href="{{ route('home.show_comment', ['id' => $comment->id]) }}">
             <div class="commentBox" style="margin-bottom: 40px;">User: {{$comment->user->name}}
                 <br>Comment: {{$comment->description}}

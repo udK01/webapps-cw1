@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('handle_name');
             $table->timestamps();
 
+            $table->unsignedBigInteger('user_id');
             //foreign key
-            $table->bigInteger('user_id')->references('id')->on('bloguser')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
