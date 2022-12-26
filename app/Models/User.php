@@ -23,6 +23,7 @@ class User extends Authenticatable
         'blog_points',
         'permission',
         'password',
+        'image',
     ];
 
     /**

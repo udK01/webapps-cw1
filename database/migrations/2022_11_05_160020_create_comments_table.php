@@ -18,13 +18,13 @@ return new class extends Migration
             $table->longText('description');
             $table->timestamps();
 
-            $table->unsignedBigInteger('post_id');
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('post_id');
+            // $table->unsignedBigInteger('user_id');
             //foreign key
-            $table->foreign('post_id')->references('id')->on('posts')
+            $table->bigInteger('post_id')->references('id')->on('posts')
                 ->onDelete('cascade')->onUpdate('cascade');
             //foreign key
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->bigInteger('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
