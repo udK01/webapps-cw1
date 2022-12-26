@@ -15,7 +15,7 @@
             </div>
             {{-- Recommended Posts --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" 
-            style="margin-top: 5px; display:flex;align-items: center;justify-content: center;flex-wrap:wrap">
+            style="margin-top: 5px; display:flex;align-items: center;justify-content: center;flex-wrap:wrap;">
                 @foreach (Auth::user()->posts as $post)
                 <a href="{{ route('home.show', ['id' => $post->id]) }}">
                 <div style="border: 1px solid;border-color: orange;padding: 10px;box-shadow: 5px 10px #ff9933;

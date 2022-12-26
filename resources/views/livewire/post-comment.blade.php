@@ -22,7 +22,7 @@
     {{-- Authorisation Check --}}
     @if ($loggedIn == $post->user->id || Auth::user()->permission >= 1) 
         {{--Edit--}}
-        <a href="{{ route('home.edit', ['id' => $post->id]) }}"><button 
+        <a href="{{ route('home.edit', ['id' => $post->id, 'loggedIn' => $loggedIn]) }}"><button 
             style="position: relative;border: 1px solid;top: 40px;right: -5px;border-color: purple;
             padding: 10px;box-shadow: 5px 10px #A020F0;font-size: 125%;">Edit</button></a>
         
