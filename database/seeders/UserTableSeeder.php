@@ -17,10 +17,13 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $b = new User;
-        $b->name = "Sam";
-        //$b->blog_points = 23145;
-        $b->email = "Sam@Storm.com";
-        $b->password = "SecretSam";
+        $b->name = "udKay";
+        $b->permission = 2;
+        $b->blog_points = 23145;
+        $b->date_of_birth =  fake()->date($format = 'Y-m-d', $max = 'now');
+        $b->email = "udKay@gmail.com";
+        $b->email_verified_at = now();
+        $b->password = "password123";
         $b->save();
     }
 }

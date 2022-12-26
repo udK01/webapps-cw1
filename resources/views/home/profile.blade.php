@@ -16,7 +16,7 @@
     {{-- Comments --}}
     <h1 style="padding-top: 20px;font-size:3vw">{{$user->name}}'s: Comments</h1>
     @foreach ($user->comments->reverse() as $comment)
-    @if ($loggedIn == $user->id)
+    @if ($loggedIn == $user->id || Auth::user()->permission >= 1)
         <a href="{{ route('home.show_comment', ['id' => $comment->id]) }}">
             <div class="commentBox" style="margin-bottom: 40px;">User: {{$comment->user->name}}
                 <br>Comment: {{$comment->description}}

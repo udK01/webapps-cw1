@@ -19,7 +19,8 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            //'blog_points' => fake()->numberBetween(0,999),
+            'blog_points' => fake()->numberBetween(0,999),
+            'permission' => 0,
             'date_of_birth' =>  fake()->date($format = 'Y-m-d', $max = 'now'),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
