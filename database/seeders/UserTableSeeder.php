@@ -24,7 +24,6 @@ class UserTableSeeder extends Seeder
         $b->email = "udKay@gmail.com";
         $b->email_verified_at = now();
         $b->password = "password123";
-        $b->image = fake()->imageUrl($width=400, $height=400);
         $b->save();
     }
 }

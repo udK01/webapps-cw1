@@ -6,12 +6,15 @@
 
     {{-- Posts Displayed On Main Page --}}
     @foreach ($posts as $post)
-            <a href="{{ route('home.show', ['id' => $post->id]) }}">
-            <div class="postBox">
-                    Poster: {{$post->user->name}}
-                <br>Title: {{$post->title}}
-                <br>Comments: {{$post->comments->count()}}</div></a>
-            
+    <div class="shadow-sm sm:rounded-lg" style="margin-top: 5px; display:flex;align-items: center;justify-content: center;flex-wrap:wrap;">
+        
+
+        <a href="{{ route('home.show', ['id' => $post->id]) }}">
+        <div class="postBox">
+            Poster: {{$post->user->name}}
+            <br>Title: {{$post->title}}
+            <br>Comments: {{$post->comments->count()}}</div></a>
+    </div>
     @endforeach
 
     {{-- Post Button --}}

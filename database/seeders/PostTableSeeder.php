@@ -18,6 +18,7 @@ class PostTableSeeder extends Seeder
         $p = new Post;
         $p->title = "Charlie is cool!";
         $p->description = "Charlie is cool because he won the competition!";
+        $p->image = fake()->imageUrl($width=400, $height=400);
         $p->user_id = 1;
         $p->save();
     }
