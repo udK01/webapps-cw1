@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\CommentNotification;
 
 class PostComment extends Component
 {
@@ -31,6 +32,7 @@ class PostComment extends Component
         $c->post_id = $this->post->id;
         $c->user_id = Auth::id();
         $c->save();
+        Auth::user()->notify(new CommentNotification);
         $this->reset('description');
         $this->emit('refreshComponent');
     }
