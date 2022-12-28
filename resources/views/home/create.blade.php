@@ -4,7 +4,7 @@
     
 @section('content')
     {{-- Comment Creation Post Including Title and Description --}}
-    <form method="POST" action="{{ route('home.store') }}">
+    <form method="POST" action="{{ route('home.store') }}" enctype="multipart/form-data">
         @csrf
         <p><input type="text" name="title"
         
@@ -12,7 +12,18 @@
 
         <p><input type="text" name="description" 
             
-            value ="{{ old('description') }}" class="postBox" placeholder="Description"></p></p>
+            value ="{{ old('description') }}" class="postBox" placeholder="Description"></p>
+
+        <div class="postBox" style="position:relative;top:15px;display:flex;align-items:center;justify-content:center;">Add Image:
+            <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
+        </div>
+
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <strong>{{$message}}</strong>
+            </div>            
+            <img src="{{ asset('images/'.Session::get('image')) }}"/>
+        @endif
 
         {{-- Submit Button --}}
         <input type="submit" value="Submit" style="position: fixed;right: 0;border: 1px solid;border-color: green;

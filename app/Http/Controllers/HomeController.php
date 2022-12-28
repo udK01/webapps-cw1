@@ -46,40 +46,24 @@ class HomeController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:250',
+            'image' => 'required|image|max:2048'
         ]);
 
-        $t = new Post;
-        $t->title = $validatedData['title'];
-        $t->description = $validatedData['description'];
-        $t->user_id = Auth::id();
-        $t->save();
+        $imageName = time().'.'.$request->image->extension();
 
+        $request->image->move(public_path('images'), $imageName);
+
+        $p = new Post;
+        $p->title = $validatedData['title'];
+        $p->description = $validatedData['description'];
+        $p->image = $imageName;
+        $p->user_id = Auth::id();
+        $p->save();
+
+        // return back()->with('success', 'Image Uploaded Successfully!')->with('image', $imageName);
         session()->flash('message', 'Post was created.');
         return redirect()->route('home.index');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store_comment(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'description' => 'required|max:250',
-    //     ]);
-
-    //     $referer = $_SERVER['HTTP_REFERER'] ?? null;
-    //     $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
-    //     $c = new Comment;
-    //     $c->description = $validatedData['description'];
-    //     $c->post_id = $post_id;
-    //     $c->user_id = Auth::id();
-    //     $c->save();
-
-    //     return redirect()->route('home.show', ["id" => $post_id]);
-    // }
 
     /**
      * Store a newly created resource in storage.
