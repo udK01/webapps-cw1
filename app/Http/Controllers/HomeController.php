@@ -8,6 +8,8 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\DeletePostNotification;
+use App\Notifications\DeleteCommentNotification;
 
 class HomeController extends Controller
 {
@@ -60,7 +62,6 @@ class HomeController extends Controller
         $p->user_id = Auth::id();
         $p->save();
 
-        // return back()->with('success', 'Image Uploaded Successfully!')->with('image', $imageName);
         session()->flash('message', 'Post was created.');
         return redirect()->route('home.index');
     }
@@ -161,7 +162,9 @@ class HomeController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-
+        if(Auth::id() != $post->user->id) {
+            Auth::user()->notify(new DeletePostNotification());
+        }
         return redirect()->route('home.index')->with('message', 'Post was deleted.');
     }
 
@@ -176,6 +179,9 @@ class HomeController extends Controller
         $comment = Comment::findOrFail($id);
         $post_id = $comment->post->id;
         $comment->delete();
+        if(Auth::id() != $comment->user->id) {
+            Auth::user()->notify(new DeleteCommentNotification());
+        }
         return redirect()->route('home.show', ["id" => $comment->post_id])->with('message', 'Comment was deleted.');
     }
 }
