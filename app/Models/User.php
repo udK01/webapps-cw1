@@ -23,7 +23,6 @@ class User extends Authenticatable
         'blog_points',
         'permission',
         'password',
-        'image',
     ];
 
     /**
@@ -57,4 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * Get the user's image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

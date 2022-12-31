@@ -24,7 +24,7 @@
         </div>
         @if (!empty($post->image))
             <div class="box-1">
-                <img src=" {{ asset('images/'.$post->image) }}"/>
+                <img src=" {{ asset('images/'.$post->image->name) }}"/>
             </div>
         @endif
     </div>

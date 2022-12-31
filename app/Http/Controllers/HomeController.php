@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\DeletePostNotification;
@@ -58,9 +59,15 @@ class HomeController extends Controller
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->description = $validatedData['description'];
-        $p->image = $imageName;
+        // $p->image = $imageName;
         $p->user_id = Auth::id();
         $p->save();
+
+        $i = new Image();
+        $i->name = $imageName;
+        $i->imageable_type = Post::class;
+        $i->imageable_id = $p->id; 
+        $i->save();
 
         session()->flash('message', 'Post was created.');
         return redirect()->route('home.index');

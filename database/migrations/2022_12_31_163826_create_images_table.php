@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->char('title', 100);
-            $table->longText('description');
-            // $table->string('image', 300)->nullable();
+            $table->string('name');
+            $table->morphs('imageable');
             $table->timestamps();
-
-            $table->bigInteger('user_id')->references('id')->on('users')
-                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('images');
     }
 };
