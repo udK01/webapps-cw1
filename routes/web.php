@@ -17,7 +17,7 @@ use App\Http\Livewire\PostComment;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing_page');
 });
 
 Route::get('/dashboard', function () {
