@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->char('title', 100);
             $table->longText('description');
-            // $table->string('image', 300)->nullable();
+            $table->integer('likes');
+            $table->integer('dislikes');
             $table->timestamps();
 
             $table->bigInteger('user_id')->references('id')->on('users')

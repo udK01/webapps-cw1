@@ -18,8 +18,8 @@ class PostTableSeeder extends Seeder
         $p = new Post;
         $p->title = "Charlie is cool!";
         $p->description = "Charlie is cool because he won the competition!";
-        // $p->imageable_id = 1;
-        // $p->imageable_type = Post::class;
+        $p->likes = 24;
+        $p->dislikes = 1;
         $p->user_id = 1;
         $p->save();
     }

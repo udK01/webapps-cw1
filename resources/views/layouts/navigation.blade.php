@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100" style="background: #FFF3B0;">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background: #FFF3B0;border-bottom: 3px solid #9E2A2B">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -19,30 +19,28 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home.profile', ['id' => Auth::id()])" :active="request()->routeIs('home.profile')">
-                        {{ __('Profile') }}
+                        <div style="color: #540B0E;">{{ __('Profile') }}</div>
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        <div style="color: #540B0E;">{{ __('Dashboard') }}</div>
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
-                        {{ __('Posts') }}
+                        <div style="color: #540B0E;">{{ __('Posts') }}</div>
                     </x-nav-link>
                 </div>
             </div>
-
-            {{-- <a href="{{ route('home.profile', ['id' => $post->user->id]) }}"> --}}
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150" style="color: #540B0E;background: #FFF3B0;border:2px solid #9E2A2B">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">

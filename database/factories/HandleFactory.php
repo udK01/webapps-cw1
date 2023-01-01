@@ -14,8 +14,8 @@ class HandleFactory extends Factory
     public function definition()
     {
         return [
-            'handle_name' => preg_replace('#[aeiou\s]+#i', '', User::find(self::$id++)->name),
-            'user_id' => 1,
+            'handle_name' => preg_replace('#[aeiou\s]+#i', '', User::find(self::$id++)->name).fake()->numberBetween(1000,9999),
+            'user_id' => User::find(self::$id)->id,
         ];
     }
 }

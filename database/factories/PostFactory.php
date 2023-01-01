@@ -20,7 +20,9 @@ class PostFactory extends Factory
         return [
             'title' => fake()->realText(rand(30,100)),
             'description' => fake()->realText(rand(50,250)),
-            'user_id' => 1, //fake()->numberBetween(1,BlogUser::Get()->count())
+            'likes' => fake()->numberBetween(0,999),
+            'dislikes' => fake()->numberBetween(0,999),
+            'user_id' => 1,
         ];
     }
 }

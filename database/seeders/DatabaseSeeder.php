@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             ])->each(function($post) use($tags) {
                 $post->tags()->attach($tags->random(rand(1,3)));
             });
-            Comment::factory(rand(1,6))->create();
+            Comment::factory(rand(4,12))->create();
         });
     }
 }

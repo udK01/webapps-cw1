@@ -59,7 +59,8 @@ class HomeController extends Controller
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->description = $validatedData['description'];
-        // $p->image = $imageName;
+        $p->likes = 0;
+        $p->dislikes = 0;
         $p->user_id = Auth::id();
         $p->save();
 

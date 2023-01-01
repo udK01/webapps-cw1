@@ -16,11 +16,11 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-
+            
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="bg-white shadow" style="background: #FFF3B0;">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" style="border-bottom:3px dashed #9E2A2B">
                         {{ $header }}
                     </div>
                 </header>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         @livewireStyles
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 style="display:flex;justify-content:center;font-size: 12ch;font-weight:lighter;font-family:fantasy">
             @yield('title')
         </h2>
     </x-slot>
@@ -23,7 +23,7 @@
         
     @endif
 
-    <div class="center">
+    <div class="center" style="background: #FFF3B0;padding: 10px">
         @yield('content')
     </div>
 
@@ -31,17 +31,6 @@
         .center {
             display: grid;
             place-items: center;
-        }
-
-        .postButton {
-            position: fixed;
-            bottom: 45px;
-            left: 45px;
-            font-size: 350%;
-            border: 1px solid;
-            border-color: red;
-            padding: 10px;
-            box-shadow: 5px 10px #FF0000;
         }
 
         .postBox {
