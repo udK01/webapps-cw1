@@ -20,18 +20,18 @@ Route::get('/', function () {
     return view('landing_page');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/dashboard', [PostComment::class, 'store_comment'])
+Route::get('/dashboard', [HomeController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('home.index');
+
+Route::post('dashboard/posts', [PostComment::class, 'store_comment'])
     ->name('wire.store_comment');
 
 Route::post('/dashboard/edit', [HomeController::class, 'store_post'])
     ->name('home.store_post');
-
-Route::get('/dashboard/posts', [HomeController::class, 'index'])
-    ->name('home.index');;
 
 Route::post('/dashboard/posts', [HomeController::class, 'store'])
     ->name('home.store');

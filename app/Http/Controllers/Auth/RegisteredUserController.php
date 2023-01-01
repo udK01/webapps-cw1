@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Handle;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -45,6 +46,13 @@ class RegisteredUserController extends Controller
             'blog_points' => 0,
             'permission' => 0,
             'password' => Hash::make($request->password),
+        ]);
+
+        Handle::create([
+            'handle_name' => preg_replace('#[aeiou\s]+#i', '', $user->name).fake()->numberBetween(1000,9999),
+            'updated_at' => now(),
+            'created_at' => now(),
+            'user_id' => $user->id,
         ]);
 
         event(new Registered($user));
