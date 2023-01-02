@@ -34,27 +34,54 @@
         }
 
         .postBox {
-            border: 1px solid;
-            border-color: orange;
-            padding: 10px;
-            box-shadow: 5px 10px #ff9933;
-            height: 125px;
-            width: 1100px;
-            position: relative;
-            top: 20px;
-            margin-bottom: 20px; 
+            display:flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap:wrap;
         }
 
-        .commentBox {
-           border: 1px solid;
-           border-color: black;
-           padding: 10px;
-           box-shadow: 5px 10px #808080;
-           height: 125px;
-           width: 750px;
-           position: relative;
-           top: 20px;
-           margin-bottom: 20px; 
+        .username {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .title {
+            font-size: 16px;
+            font-weight:lighter;
+        }
+
+        .handle {
+            font-size: 14px;
+            font-weight: lighter;
+            color: #E09F3E;
+        }
+
+        .image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-top: 3px dashed #540B0E;
+            border-bottom: 3px dashed #540B0E;
+        }
+
+        .tag {
+            display:flex;
+            border-radius: 5px;
+            padding: 5px;
+            color:#EDE3E9;
+            border: 3px solid #540B0E;
+            background: #540B0E;
+        }
+
+        .postedAt {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 
