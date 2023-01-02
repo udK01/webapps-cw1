@@ -14,7 +14,7 @@
         {{-- Authorisation Check --}}
         @if ($loggedIn == $post->user->id || Auth::user()->permission >= 1) 
             {{--Edit--}}
-            <a href="{{ route('home.edit', ['id' => $post->id, 'loggedIn' => $loggedIn]) }}" class="btn btn-2" style="color: #F0F4EF">Edit</a>
+            <a href="{{ route('home.edit', ['id' => $post->id]) }}" class="btn btn-2" style="color: #F0F4EF">Edit</a>
             
             {{-- Delete --}}
             <form method="POST" action="{{ route('home.destroy', ['id' => $post->id]) }}" class="btn btn-2" style="color: #F0F4EF;">
@@ -25,7 +25,6 @@
         @endif
         
         <button type="submit" form="commentForm" class="btn btn-2" style="color: #F0F4EF;">Submit</button>
-        {{-- <input type="submit" value="Submit" form="commentForm" class="btn btn-2" style="color: #F0F4EF;"> --}}
     </div>
 
     {{-- Comments --}}

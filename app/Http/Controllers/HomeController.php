@@ -80,21 +80,20 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_post(Request $request)
+    public function store_post(Request $request, $id)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:250',
         ]);
-
-        $referer = $_SERVER['HTTP_REFERER'] ?? null;
-        $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
-        $post = Post::findOrFail($post_id);
+        // dd($request->path());
+        // $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
+        $post = Post::findOrFail($id);
         $post->title = $validatedData['title'];
         $post->description = $validatedData['description'];
         $post->save();
 
-        return redirect()->route('home.show', ["id" => $post_id]);
+        return redirect()->route('home.show', ["id" => $id]);
     }
 
     /**

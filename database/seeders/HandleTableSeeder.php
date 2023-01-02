@@ -16,7 +16,7 @@ class HandleTableSeeder extends Seeder
     public function run()
     {
         $h = new Handle();
-        $h->handle_name = "charl13";
+        $h->handle_name = "dK932";
         $h->user_id = 1;
         $h->save();
     }

@@ -21,7 +21,7 @@ class CommentFactory extends Factory
         return [
             'description' => fake()->realText(rand(50,250)),
             'post_id' => fake()->numberBetween(1,Post::Get()->count()),
-            'user_id' => 1, //fake()->numberBetween(1,BlogUser::Get()->count())
+            'user_id' => fake()->numberBetween(1,User::Get()->count()),
         ];
     }
 }

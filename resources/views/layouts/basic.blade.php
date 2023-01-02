@@ -1,10 +1,12 @@
 <x-app-layout>
+    
     <x-slot name="header">
         @livewireStyles
         <h2 style="display:flex;justify-content:center;font-size: 12ch;font-weight:lighter;font-family:fantasy">
             @yield('title')
         </h2>
     </x-slot>
+
 <body>
     @livewireScripts
     @if ($errors->any())
@@ -26,6 +28,7 @@
     <div class="center" style="background: #FFF3B0;padding: 10px">
         @yield('content')
     </div>
+</body>
 
     <style>
         .center {
@@ -50,6 +53,16 @@
         .title {
             font-size: 16px;
             font-weight:lighter;
+        }
+
+        .description {
+            border: 3px dashed #540B0E;
+            border-radius: 25px;
+            padding: 10px;
+            font-size: 16px;
+            inline-size: 50ch;
+            overflow-wrap: break-word;
+            margin: auto;
         }
 
         .handle {

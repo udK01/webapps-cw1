@@ -30,7 +30,7 @@ Route::get('/dashboard', [HomeController::class, 'index'])
 Route::post('dashboard/posts', [PostComment::class, 'store_comment'])
     ->name('wire.store_comment');
 
-Route::post('/dashboard/edit', [HomeController::class, 'store_post'])
+Route::post('/dashboard/edit/{id}', [HomeController::class, 'store_post'])
     ->name('home.store_post');
 
 Route::post('/dashboard/posts', [HomeController::class, 'store'])
