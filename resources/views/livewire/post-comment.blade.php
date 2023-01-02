@@ -32,19 +32,11 @@
     @if ($loggedIn == $comment->user->id || Auth::user()->permission >= 1)
     <div style="display:flex;justify-content:center">
         <a href="{{ route('home.show_comment', ['id' => $comment->id]) }}">
-            <div class="commentBox"> 
-                <div class="username">
-                    {{$comment->user->name}}
-                </div>
-                <div class="handle">
-                    {{$comment->created_at}}
-                </div>
-                <div>
-                    Inspect
-                </div>
-                <div>
-                    {{$comment->description}}
-                </div>
+            <div class="commentBox">
+                <div class="username">{{$comment->user->name}}</div>
+                <div class="handle">{{$comment->created_at}}</div>
+                <div>{{$comment->description}}</div>
+                <div class="btn btn-3" style="color: #F0F4EF;">Inspect</div>
             </div>
         </a>
     </div>
@@ -131,4 +123,29 @@
         transform: translate(5px, 5px)
     }
 
+    .btn-3 {
+        color: black;
+    }
+
+    .btn-3::after, .btn-3::before {
+        border: 2px dashed #E09F3E;
+        border-radius: 25px;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-3:hover::after {
+        transform: translate(-5px, -5px)
+    }
+
+    .btn-3:hover::before {
+        transform: translate(5px, 5px)
+    }
 </style>

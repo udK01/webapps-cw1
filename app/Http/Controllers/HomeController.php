@@ -86,8 +86,7 @@ class HomeController extends Controller
             'title' => 'required|max:100',
             'description' => 'required|max:250',
         ]);
-        // dd($request->path());
-        // $post_id = (int)filter_var($referer, FILTER_SANITIZE_NUMBER_INT);
+
         $post = Post::findOrFail($id);
         $post->title = $validatedData['title'];
         $post->description = $validatedData['description'];
