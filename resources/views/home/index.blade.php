@@ -46,24 +46,12 @@
         @endforeach
         <div style="color: #540B0E;">{{ $posts -> links('pagination::tailwind')}}</div>
     </div>
-    <a href="{{ route('home.create') }}" class="btn btn-2" style="position: fixed;left:20px;bottom:20px">Create Post</a>
+    <a href="{{ route('home.create') }}" class="btn1 btn-2" style="position: fixed;left:20px;bottom:20px">Create Post</a>
 @endsection
 
 <style>
-    .box {
-        inline-size: 75ch;
-        overflow-wrap: break-word;
-        hyphens: manual;
-        gap: 5px;
-        border-radius: 25px;
-        padding: 5px;
-        background:#9E2A2B;
-        outline:3px solid #9E2A2B;
-        color:#EDE3E9;
-        border: 3px dashed #540B0E;
-    }
 
-    .btn {
+    .btn1 {
         text-decoration: none;
         padding: 20px 50px;
         font-size: 4rem;
@@ -74,13 +62,13 @@
         margin: 32px;
     }
 
-    .btn-2 {
+    ::btn-2 {
         color: black;
     }
 
-    .btn-2::after, .btn-2::before {
+    ::btn-2::after, ::btn-2::before {
         border: 3px solid #9E2A2B;
-        content: "";
+        display: none;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -90,11 +78,11 @@
         transition: transform 0.3s ease;
     }
 
-    .btn-2:hover::after {
+    ::btn-2:hover::after {
         transform: translate(-5px, -5px)
     }
 
-    .btn-2:hover::before {
+    ::btn-2:hover::before {
         transform: translate(5px, 5px)
     }
 </style>

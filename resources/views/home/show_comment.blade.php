@@ -5,22 +5,24 @@
 @section('content')
 
     {{-- Comment Displayed --}}
-    <div class="commentBox" style="margin-bottom: 40px;">User: 
-        <a href="{{ route('home.profile', ['id' => $comment->user->id]) }}">{{$comment->user->name}}</a>
-        <br>Comment: {{$comment->description}}
+    <div class="commentBox" style="display: flex;flex-direction:column;align-items:center;">
+        <a href="{{ route('home.profile', ['id' => $comment->user->id]) }}">
+            <div class="username">{{$comment->user->name}}</div>
+        </a>
+        <div>{{$comment->description}}</div>
     </div>
 
-    {{-- Back Button --}}
-    <a href="{{ route('home.show', ['id' => $comment->post->id]) }}"><button 
-    style="position: absolute;left: 0;border: 1px solid;border-color: black;padding: 10px;
-    box-shadow: 5px 10px #808080;margin-inline: 585px;margin-block: 10px;font-size: 225%;">Back</button></a>
-
-    {{-- Delete Button --}}
-    <form method="POST" action="{{ route('home.destroy_comment', ['id' => $comment->id]) }}" 
-    style="position: absolute;border: 1px solid;border-color: red;padding: 10px;
-    box-shadow: 5px 10px #FF0000;margin-top: 260px;margin-right: -625px;font-size: 225%;">
-        @csrf
-        @method('DELETE')
-        <a onclick='return confirm("Are you sure?")'><button type="submit">Delete</button></a>
-    </form>
+    <div class="box" style="inline-size: 65ch">
+        <div class="buttons" style="align-items: center">
+            {{-- Back --}}
+            <a href="{{ route('home.show', ['id' => $comment->post->id]) }}" class="btn btn-2">Back</a>
+                
+            {{-- Delete --}}
+            <form method="POST" action="{{ route('home.destroy_comment', ['id' => $comment->id]) }}" class="btn btn-2">
+                @csrf
+                @method('DELETE')
+                <a onclick='return confirm("Are you sure?")'><button type="submit">Delete</button></a>
+            </form>
+        </div>
+    </div>
 @endsection
