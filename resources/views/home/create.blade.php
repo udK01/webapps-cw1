@@ -18,13 +18,6 @@
             <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success alert-block">
-                <strong>{{$message}}</strong>
-            </div>            
-            <img src="{{ asset('images/'.Session::get('image')) }}"/>
-        @endif
-
         {{-- Submit Button --}}
         <input type="submit" value="Submit" style="position: fixed;right: 0;border: 1px solid;border-color: green;
         padding: 10px;box-shadow: 5px 10px #00FF00;margin-top: 50px;margin-right: 400px;font-size: 350%;">

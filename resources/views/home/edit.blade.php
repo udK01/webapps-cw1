@@ -41,7 +41,7 @@
                     @endforeach
                 </div>
                 @if (!empty($post->image))
-                    <div class="image">
+                    <div class="image" style="display: flex;flex-direction: column">
                         <img src=" {{ asset('images/'.$post->image->name) }}"/>
                     </div>
                 @endif

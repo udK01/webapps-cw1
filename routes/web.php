@@ -33,6 +33,9 @@ Route::post('dashboard/posts', [PostComment::class, 'store_comment'])
 Route::post('/dashboard/edit/{id}', [HomeController::class, 'store_post'])
     ->name('home.store_post');
 
+Route::post('/dashboard/profile/edit/{id}', [HomeController::class, 'store_profile'])
+    ->name('home.store_profile');
+
 Route::post('/dashboard/posts', [HomeController::class, 'store'])
     ->name('home.store');
 
@@ -50,6 +53,9 @@ Route::get('/dashboard/posts/edit/{id}', [HomeController::class, 'edit'])
 
 Route::get('/dashboard/profile/{id}', [HomeController::class, 'show_profile'])
     ->name('home.profile');
+
+Route::get('/dashboard/profile/edit/{id}', [HomeController::class, 'profile_edit'])
+    ->name('home.profile_edit');
 
 Route::delete('/dashboard/posts/{id}', [HomeController::class, 'destroy'])
     ->name('home.destroy');

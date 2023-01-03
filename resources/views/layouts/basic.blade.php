@@ -30,74 +30,80 @@
     </div>
 </body>
 
-    <style>
-        .center {
-            display: grid;
-            place-items: center;
-        }
+<style>
+    .center {
+        display: grid;
+        place-items: center;
+    }
 
-        .postBox {
-            display:flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap:wrap;
-        }
+    .postBox {
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap:wrap;
+    }
 
-        .username {
-            font-size: 18px;
-            font-weight: bold;
-        }
+    .username {
+        font-size: 18px;
+        font-weight: bold;
+    }
         
-        .title {
-            font-size: 16px;
-            font-weight:lighter;
-        }
+    .title {
+        font-size: 16px;
+        font-weight:lighter;
+    }
 
-        .description {
-            border: 3px dashed #540B0E;
-            border-radius: 25px;
-            padding: 10px;
-            font-size: 16px;
-            inline-size: 50ch;
-            overflow-wrap: break-word;
-            margin: auto;
-        }
+    .description {
+        border: 3px dashed #540B0E;
+        border-radius: 25px;
+        padding: 10px;
+        font-size: 16px;
+        inline-size: 50ch;
+        overflow-wrap: break-word;
+        margin: auto;
+    }
+    
+    .profilePicture {
+        max-height: 100px;
+        padding:10px;
+        border-radius: 25px;
+    }
 
-        .handle {
-            font-size: 14px;
-            font-weight: lighter;
-            color: #E09F3E;
-        }
+    .handle {
+        font-size: 14px;
+        font-weight: lighter;
+        color: #E09F3E;
+    }
 
-        .image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            border-top: 3px dashed #540B0E;
-            border-bottom: 3px dashed #540B0E;
-        }
+    .image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-top: 3px dashed #540B0E;
+        border-bottom: 3px dashed #540B0E;
+    }
 
-        .tag {
-            display:flex;
-            border-radius: 5px;
-            padding: 5px;
-            color:#EDE3E9;
-            border: 3px solid #540B0E;
-            background: #540B0E;
-        }
+    .tag {
+        display:flex;
+        border-radius: 5px;
+        padding: 5px;
+        color:#EDE3E9;
+        border: 3px solid #540B0E;
+        background: #540B0E;
+    }
 
-        .postedAt {
-            display:flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
+    .postedAt {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-        .box {
+    .box {
         inline-size: 75ch;
         overflow-wrap: break-word;
         hyphens: manual;
@@ -191,6 +197,6 @@
     .btn-3:hover::before {
         transform: translate(5px, 5px)
     }
-    </style>
+</style>
 
 </x-app-layout>

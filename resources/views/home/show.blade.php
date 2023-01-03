@@ -13,7 +13,7 @@
                     <div class="handle">#{{$post->user->handle->handle_name}}</div>
                 </div>
                 </a>
-                <div class="postedAt">posted at: 
+                <div class="postedAt">posted at:
                     <div class="handle">{{$post->created_at}}</div>
                 </div>
             </div>

@@ -64,14 +64,59 @@ class HomeController extends Controller
         $p->user_id = Auth::id();
         $p->save();
 
-        $i = new Image();
-        $i->name = $imageName;
-        $i->imageable_type = Post::class;
-        $i->imageable_id = $p->id; 
-        $i->save();
+        if (!empty($user->image)) {
+            Image::where('imageable_type', Post::class)
+                ->where('imageable_id', $post->id)
+                ->update(['name' => $imageName]);
+
+        } else {
+            $i = new Image();
+            $i->name = $imageName;
+            $i->imageable_type = Post::class;
+            $i->imageable_id = $p->id; 
+            $i->save();    
+        }
 
         session()->flash('message', 'Post was created.');
         return redirect()->route('home.index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store_profile(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:100',
+            'image' => 'required|image|max:2048'
+        ]);
+
+        $user = User::find($id);
+        $imageName = $user->name.time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+
+        $user->name = $validatedData['name'];
+        $user->save();
+
+        if (!empty($user->image)) {
+            Image::where('imageable_type', User::class)
+                ->where('imageable_id', $user->id)
+                ->update(['name' => $imageName]);
+
+        } else {
+            $i = new Image();
+            $i->name = $imageName;
+            $i->imageable_type = User::class;
+            $i->imageable_id = $user->id; 
+            $i->save();      
+        }
+        
+        session()->flash('message', 'Profile updated.');
+        return redirect()->route('home.profile', ['id' => $user->id]);
     }
 
     /**
@@ -122,7 +167,20 @@ class HomeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function profile_edit($id)
+    {
+        $user = User::findOrFail($id);
+        $loggedIn = Auth::id();
+        return view('home.profile_edit', ['user' => $user, 'loggedIn' => $loggedIn]);
+    }
+
+    /**
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
