@@ -64,17 +64,12 @@ class HomeController extends Controller
         $p->user_id = Auth::id();
         $p->save();
 
-        if (!empty($user->image)) {
-            Image::where('imageable_type', Post::class)
-                ->where('imageable_id', $post->id)
-                ->update(['name' => $imageName]);
-
-        } else {
+        if (!empty($validatedData['image'])) {
             $i = new Image();
             $i->name = $imageName;
             $i->imageable_type = Post::class;
             $i->imageable_id = $p->id; 
-            $i->save();    
+            $i->save();
         }
 
         session()->flash('message', 'Post was created.');
@@ -106,7 +101,6 @@ class HomeController extends Controller
             Image::where('imageable_type', User::class)
                 ->where('imageable_id', $user->id)
                 ->update(['name' => $imageName]);
-
         } else {
             $i = new Image();
             $i->name = $imageName;
@@ -130,12 +124,29 @@ class HomeController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:250',
+            'image' => 'required|image|max:2048'
         ]);
-
+        
         $post = Post::findOrFail($id);
         $post->title = $validatedData['title'];
         $post->description = $validatedData['description'];
         $post->save();
+
+        if (!empty($post->image) && !empty($validatedData['image'])) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            Image::where('imageable_type', Post::class)
+                ->where('imageable_id', $post->id)
+                ->update(['name' => $imageName]);
+        } elseif(!empty($validatedData['image'])){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $i = new Image();
+            $i->name = $imageName;
+            $i->imageable_type = Post::class;
+            $i->imageable_id = $p->id; 
+            $i->save();    
+        }
 
         return redirect()->route('home.show', ["id" => $id]);
     }

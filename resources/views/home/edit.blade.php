@@ -5,7 +5,7 @@
 @section('content')
 
 @if ($loggedIn == $post->user->id || Auth::user()->permission >= 1)
-    <form method="POST" id="postForm" action="{{ route('home.store_post', $post->id) }}" class="formStyle">
+    <form method="POST" id="postForm" action="{{ route('home.store_post', $post->id) }}" class="formStyle" enctype="multipart/form-data">
         @csrf
         {{-- Post --}}
         <div class="postBox">
@@ -45,6 +45,9 @@
                         <img src=" {{ asset('images/'.$post->image->name) }}"/>
                     </div>
                 @endif
+                <div style="display: flex;justify-content:center;border-bottom: 3px dashed #540B0E;padding: 5px">
+                    <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
+                </div>
                 {{-- Icons --}}
                 <div style="display:flex;items-align:space-evenly;justify-content:space-evenly;margin:10px">
                     {{-- Like Icon --}}

@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div style="display: flex;justify-content:center">
-                <input type="file" id="profilePic" class="form-control" name="image" value ="{{ old('image') }}"/>
+                <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
             </div>
             <div style="display:flex;justify-content:space-evenly;padding: 10px">
                 {{-- Back --}}
