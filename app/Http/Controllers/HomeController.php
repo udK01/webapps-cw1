@@ -49,12 +49,8 @@ class HomeController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:250',
-            'image' => 'required|image|max:2048'
+            'image' => 'nullable|image|max:2048'
         ]);
-
-        $imageName = time().'.'.$request->image->extension();
-
-        $request->image->move(public_path('images'), $imageName);
 
         $p = new Post;
         $p->title = $validatedData['title'];
@@ -65,6 +61,8 @@ class HomeController extends Controller
         $p->save();
 
         if (!empty($validatedData['image'])) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
             $i = new Image();
             $i->name = $imageName;
             $i->imageable_type = Post::class;

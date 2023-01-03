@@ -1,5 +1,11 @@
 <x-app-layout>
     
+    <style type="text/css">
+        .min-h-screen {
+            background-color: #FFF3B0;
+          }
+    </style>
+
     <x-slot name="header">
         @livewireStyles
         <h2 style="display:flex;justify-content:center;font-size: 12ch;font-weight:lighter;font-family:fantasy">

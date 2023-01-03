@@ -27,7 +27,7 @@
             @endif
 
             <!-- Page Content -->
-            <main style="background: #FFF3B0;">
+            <main>
                 {{ $slot }}
             </main>
         </div>

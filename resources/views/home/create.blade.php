@@ -4,26 +4,46 @@
     
 @section('content')
     {{-- Comment Creation Post Including Title and Description --}}
-    <form method="POST" action="{{ route('home.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('home.store') }}" class="formStyle" enctype="multipart/form-data">
         @csrf
-        <p><input type="text" name="title"
-        
-            value ="{{ old('title') }}" class="postBox" placeholder="Title"></p>
-
-        <p><input type="text" name="description" 
-            
-            value ="{{ old('description') }}" class="postBox" placeholder="Description"></p>
-
-        <div class="postBox" style="position:relative;top:15px;display:flex;align-items:center;justify-content:center;">Add Image:
-            <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
-        </div>
-
-        {{-- Submit Button --}}
-        <input type="submit" value="Submit" style="position: fixed;right: 0;border: 1px solid;border-color: green;
-        padding: 10px;box-shadow: 5px 10px #00FF00;margin-top: 50px;margin-right: 400px;font-size: 350%;">
-
-        {{-- Cancel Button --}}
-        <a href="{{ route('home.index') }}"><div style="position: absolute;left: 0;border: 1px solid;border-color: black;
-        padding: 10px;box-shadow: 5px 10px #808080;margin-top: 50px;margin-left: 410px;font-size: 350%;">Cancel</div></a>
+        {{-- Post --}}
+        <div class="postBox">
+            <div class="box">
+                {{-- Input Area --}}
+                <div class="inputContainer">
+                    {{-- It just doesn't work with class... --}}
+                    <input type="text" name="title" class="inputArea" style="color:black;width: 90%;border-radius: 25px;
+                    background:transparent;border:2px solid black" value ="{{ old('title') }}" placeholder="Title">
+                    <input type="text" name="description" style="color:black;width: 90%;border-radius: 25px;
+                    background:transparent;border:2px solid black;" value ="{{ old('description') }}" placeholder="Description">
+                    
+                    <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
+                </div>
+                <div class="buttons">
+                {{-- Back --}}
+                <a href="{{ route('home.index') }}" class="btn btn-2">Back</a>
+                {{-- Submit --}}
+                <button type="submit" class="btn btn-2">Submit</button>
+                </div>
+            </div>
+        </div>              
     </form>
 @endsection
+
+<style>
+    .formStyle {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        margin: 10px;
+        gap:10px;
+    }
+
+    .inputContainer {
+        display: flex;
+        flex-direction:column;
+        gap: 10px;
+        align-items:center;
+        margin: 10px
+    }
+</style>
