@@ -27,9 +27,11 @@
                 <div class="inputContainer">
                     {{-- It just doesn't work with class... --}}
                     <input type="text" name="title" class="inputArea" style="color:black;width: 90%;border-radius: 25px;
-                    background:transparent;border:2px solid black" value ="{{ old('title') }}" placeholder="{{$post->title}}">
+                    background:transparent;border:2px solid black" value ="{{$post->title}}"> 
+                    {{-- placeholder="{{$post->title}}" --}}
                     <input type="text" name="description" style="color:black;width: 90%;border-radius: 25px;
-                    background:transparent;border:2px solid black;" value ="{{ old('description') }}" placeholder="{{$post->description}}">
+                    background:transparent;border:2px solid black;" value ="{{$post->description}}">
+                    {{-- placeholder="{{$post->description}}" --}}
                 </div>
 
                 {{-- Tags --}}

@@ -16,7 +16,8 @@
                     background:transparent;border:2px solid black" value ="{{ old('title') }}" placeholder="Title">
                     <input type="text" name="description" style="color:black;width: 90%;border-radius: 25px;
                     background:transparent;border:2px solid black;" value ="{{ old('description') }}" placeholder="Description">
-                    
+                    <input type="text" name="tags" style="color:black;width: 90%;border-radius: 25px;
+                    background:transparent;border:2px solid black;" value ="{{ old('tags') }}" placeholder="Add Up To 3 Tags Separated By Commas">
                     <input type="file" class="form-control" name="image" value ="{{ old('image') }}"/>
                 </div>
                 <div class="buttons">

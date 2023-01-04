@@ -16,7 +16,8 @@
                 @endif
                 <div style="display:flex;flex-direction:column;align-items: center;justify-content:center">
                     <input type="text" name="name" style="color:black;width: 90%;border-radius: 25px;
-                    background:transparent;border:2px solid black" value ="{{ old('name') }}" placeholder="{{$user->name}}">
+                    background:transparent;border:2px solid black" value ="{{$user->name}}">
+                    {{-- placeholder="{{$user->name}}" --}}
                     <div class="handle">{{$user->handle->handle_name}}</div>
                 </div>
             </div>

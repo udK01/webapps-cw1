@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\DeletePostNotification;
@@ -49,16 +50,31 @@ class HomeController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:250',
+            'tags' => 'nullable|max:100',
             'image' => 'nullable|image|max:2048'
         ]);
 
-        $p = new Post;
+        $p = new Post();
         $p->title = $validatedData['title'];
         $p->description = $validatedData['description'];
         $p->likes = 0;
         $p->dislikes = 0;
         $p->user_id = Auth::id();
         $p->save();
+
+        if (!empty('tags')) {
+            $tags = explode (",", $validatedData['tags']);
+            $tagsSliced = preg_replace('" "', '', array_map('strtolower', array_slice($tags, 0, 3)));
+            foreach ($tagsSliced as $tag) {
+                $t = Tag::where('tag', $tag)->get();
+                if (empty($t->first()->tag)) {
+                    $p->tags()->attach(Tag::create(['tag' => $tag]));
+                } else {
+                    $p->tags()->attach($t);
+                    
+                }
+            }
+        }
 
         if (!empty($validatedData['image'])) {
             $imageName = time().'.'.$request->image->extension();
