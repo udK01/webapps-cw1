@@ -62,7 +62,7 @@ class HomeController extends Controller
         $p->user_id = Auth::id();
         $p->save();
 
-        if (!empty('tags')) {
+        if (!empty($validatedData['tags'])) {
             $tags = explode (",", $validatedData['tags']);
             $tagsSliced = preg_replace('" "', '', array_map('strtolower', array_slice($tags, 0, 3)));
             foreach ($tagsSliced as $tag) {
