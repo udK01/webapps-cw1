@@ -23,8 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $posts = Post::all();
-        // return view('home.index', ["posts" => $posts]);
         $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(15);
         return view('home.index', ['posts' => $posts]);
     }
@@ -71,7 +69,6 @@ class HomeController extends Controller
                     $p->tags()->attach(Tag::create(['tag' => $tag]));
                 } else {
                     $p->tags()->attach($t);
-                    
                 }
             }
         }
@@ -158,7 +155,7 @@ class HomeController extends Controller
             $i = new Image();
             $i->name = $imageName;
             $i->imageable_type = Post::class;
-            $i->imageable_id = $p->id; 
+            $i->imageable_id = $post->id; 
             $i->save();    
         }
 
@@ -250,10 +247,10 @@ class HomeController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $post->delete();
         if(Auth::id() != $post->user->id) {
-            Auth::user()->notify(new DeletePostNotification());
+            $post->user->notify(new DeletePostNotification());
         }
+        $post->delete();
         return redirect()->route('home.index')->with('message', 'Post was deleted.');
     }
 
@@ -267,10 +264,10 @@ class HomeController extends Controller
     {
         $comment = Comment::findOrFail($id);
         $post_id = $comment->post->id;
-        $comment->delete();
         if(Auth::id() != $comment->user->id) {
-            Auth::user()->notify(new DeleteCommentNotification());
+            $comment->user->notify(new DeleteCommentNotification());
         }
+        $comment->delete();
         return redirect()->route('home.show', ["id" => $comment->post_id])->with('message', 'Comment was deleted.');
     }
 }

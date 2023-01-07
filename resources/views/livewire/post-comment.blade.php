@@ -12,7 +12,7 @@
         <a href="{{ route('home.index') }}" class="btn btn-2" style="color: #F0F4EF">Back</a>
 
         {{-- Authorisation Check --}}
-        @if ($loggedIn == $post->user->id || Auth::user()->permission >= 1) 
+        @if (Auth::id() == $post->user->id || Auth::user()->permission >= 1) 
             {{--Edit--}}
             <a href="{{ route('home.edit', ['id' => $post->id]) }}" class="btn btn-2" style="color: #F0F4EF">Edit</a>
             
@@ -29,7 +29,7 @@
 
     {{-- Comments --}}
     @foreach ($post->comments->reverse() as $comment)
-    @if ($loggedIn == $comment->user->id || Auth::user()->permission >= 1)
+    @if (Auth::id() == $comment->user->id || Auth::user()->permission >= 1)
     <div style="display:flex;justify-content:center">
         <a href="{{ route('home.show_comment', ['id' => $comment->id]) }}">
             <div class="commentBox">
